@@ -1,10 +1,16 @@
+import constants from './constants'
+
 const initial = {
   text: 'text',
 }
 
 export default dirKey => (state = initial, action) => {
+  const {
+    CHANGE,
+  } = constants(dirKey)
+
   switch (action.type) {
-    case `change: ${dirKey}`:
+    case CHANGE:
       return {
         ...state,
         text: action.value,

@@ -1,16 +1,17 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as actions from './actions'
+import actions from './actions'
 import Root from './Root'
 
-const mapStateToProps = (state, props) => ({
-  dirKey: props.dirKey,
-  text: state[props.dirKey].text,
-})
+export default dirKey => {
+  const mapStateToProps = state => ({
+    text: state[dirKey].text,
+  })
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch),
-})
+  const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actions(dirKey), dispatch),
+  })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Root)
+  return connect(mapStateToProps, mapDispatchToProps)(Root)
+}

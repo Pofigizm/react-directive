@@ -55,14 +55,12 @@ const rootReducer = combineReducers({
 const devTool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const store = createStore(rootReducer, devTool)
 
-const init = directive => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <directive.module.container dirKey={directive.key} />
-    </Provider>,
-    directive.node,
-  )
-}
-Object.values(directives).forEach(dir => {
-  init(dir)
-})
+Object.values(directives)
+  .forEach(directive => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <directive.module.container />
+      </Provider>,
+      directive.node,
+    )
+  })

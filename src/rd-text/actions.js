@@ -1,4 +1,16 @@
-export const change = (dirKey, value) => ({
-  type: `change: ${dirKey}`,
-  value,
-})
+import constants from './constants'
+
+export default dirKey => {
+  const {
+    CHANGE,
+  } = constants(dirKey)
+
+  const change = value => ({
+    type: CHANGE,
+    value,
+  })
+
+  return {
+    change,
+  }
+}
